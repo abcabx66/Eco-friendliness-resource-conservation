@@ -1,46 +1,112 @@
-body {
-    background-color: bisque;
+/* Basic page setup */
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: rgba(13, 173, 130, 0.833);
+    font-family: "Tektur", sans-serif;
 }
 
-h2 {
-    font-family: "Exo 2", sans-serif;
-    font-size: 500%;
-    color: rgb(0, 0, 0);
+/* Grain canvas styling */
+#grain-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    text-shadow: #111;
+    opacity: 10;
+    /* Adjust for subtlety */
+}
+
+
+/* Stylish H2 */
+.container h2 {
+    font-size: 4rem;
+    color: black;
     -webkit-text-stroke: 1px rgb(165, 0, 177);
-    /* Chrome, Safari */
     text-shadow:
-        /* Firefox fallback */
         -1px -1px 0 rgb(165, 0, 177),
         1px -1px 0 rgb(165, 0, 177),
         -1px 1px 0 rgb(165, 0, 177),
         1px 1px 0 rgb(165, 0, 177);
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    margin: 0;
 }
 
-
-.press-start-2p-regular {
-    font-family: "Press Start 2P", system-ui;
-    font-weight: 400;
-    font-style: normal;
+/* Extra content section */
+.extra-content {
+    padding: 3rem;
+    font-size: 1.2rem;
+    color: #111;
+    position: relative;
+    z-index: 1;
 }
 
-.exo-2 {
-    font-family: "Exo 2", sans-serif;
+.tektur {
+    font-family: "Tektur", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
+    font-variation-settings:
+        "wdth" 100;
 }
 
-.merienda {
-    font-family: "Merienda", cursive;
-    font-optical-sizing: auto;
+.container {
+    max-width: 900px;
+    margin: 2rem auto;
+    text-align: center;
 }
 
-.cascadia-code {
-    font-family: "Cascadia Code", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 100;
-    font-style: normal;
+.letter-box {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem;
+    background-color: #fffdf5;
+    border: 2px solid #c9a67b;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    font-family: 'Georgia', serif;
+    line-height: 1.6;
+    border-radius: 8px;
+    margin-top: 2rem;
+    gap: 2rem;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all 0.6s ease;
+    pointer-events: none;
+}
+
+.letter-box.show {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+.letter-page {
+    width: 48%;
+    text-align: left;
+    background-color: #fffaf0;
+    padding: 1rem;
+    border: 1px solid #dec2a5;
+    border-radius: 4px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
+}
+
+.open-letter-btn {
+    display: block;
+    margin: 3rem auto;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    background-color: #d4a373;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.open-letter-btn:hover {
+    background-color: #b17a5b;
 }
