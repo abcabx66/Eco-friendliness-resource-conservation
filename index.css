@@ -1,0 +1,46 @@
+body {
+    background-color: bisque;
+}
+
+h2 {
+    font-family: "Exo 2", sans-serif;
+    font-size: 500%;
+    color: rgb(0, 0, 0);
+    -webkit-text-stroke: 1px rgb(165, 0, 177);
+    /* Chrome, Safari */
+    text-shadow:
+        /* Firefox fallback */
+        -1px -1px 0 rgb(165, 0, 177),
+        1px -1px 0 rgb(165, 0, 177),
+        -1px 1px 0 rgb(165, 0, 177),
+        1px 1px 0 rgb(165, 0, 177);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.press-start-2p-regular {
+    font-family: "Press Start 2P", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.exo-2 {
+    font-family: "Exo 2", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.merienda {
+    font-family: "Merienda", cursive;
+    font-optical-sizing: auto;
+}
+
+.cascadia-code {
+    font-family: "Cascadia Code", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: normal;
+}
