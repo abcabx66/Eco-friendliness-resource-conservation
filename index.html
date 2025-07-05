@@ -5,20 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
+    <script src="index.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&display=swap" rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Merienda:wght@300..900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tektur:wght@400..900&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 
 <body>
-    <h2>i hate you very much</h2>
+    <canvas id="grain-canvas"></canvas>
+<button class="open-letter-btn" onclick="openLetter()">Open Letter</button>
+
+<div id="NoteDIV" class="container letter-box hidden">
+  <div class="letter-page left-page">
+    <h2>Dear Love,</h2>
+    <p>I love you very much, my love ❤️<br>
+       You mean the world to me...</p>
+  </div>
+  <div class="letter-page right-page">
+    <h2>Forever Yours,</h2>
+    <p>Always thinking of you 💌<br>
+       With all my heart...</p>
+  </div>
+</div>
+
+
+
 </body>
 
 </html>
