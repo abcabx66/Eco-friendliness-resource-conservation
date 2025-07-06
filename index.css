@@ -4,47 +4,23 @@ html {
     margin: 0;
     padding: 0;
     height: 100%;
-    background-color: rgba(13, 173, 130, 0.833);
+    background-color: rgba(16, 110, 85, 0.833);
     font-family: "Tektur", sans-serif;
+    overflow: auto;
 }
 
-/* Grain canvas styling */
 #grain-canvas {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 9999;
+    z-index: -1;
     pointer-events: none;
     mix-blend-mode: overlay;
-    text-shadow: #111;
-    opacity: 10;
-    /* Adjust for subtlety */
+    opacity: 0.1;
 }
 
-
-/* Stylish H2 */
-.container h2 {
-    font-size: 4rem;
-    color: black;
-    -webkit-text-stroke: 1px rgb(165, 0, 177);
-    text-shadow:
-        -1px -1px 0 rgb(165, 0, 177),
-        1px -1px 0 rgb(165, 0, 177),
-        -1px 1px 0 rgb(165, 0, 177),
-        1px 1px 0 rgb(165, 0, 177);
-    margin: 0;
-}
-
-/* Extra content section */
-.extra-content {
-    padding: 3rem;
-    font-size: 1.2rem;
-    color: #111;
-    position: relative;
-    z-index: 1;
-}
 
 .tektur {
     font-family: "Tektur", sans-serif;
@@ -58,55 +34,174 @@ html {
     max-width: 900px;
     margin: 2rem auto;
     text-align: center;
+    overflow: auto;
 }
 
-.letter-box {
+.center-container {
+    position: relative;
+    /* instead of fixed */
     display: flex;
-    justify-content: space-between;
-    padding: 2rem;
-    background-color: #fffdf5;
-    border: 2px solid #c9a67b;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    font-family: 'Georgia', serif;
-    line-height: 1.6;
-    border-radius: 8px;
-    margin-top: 2rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 2rem;
-    opacity: 0;
-    transform: scale(0.95);
-    transition: all 0.6s ease;
-    pointer-events: none;
+    padding: 2rem 1rem;
+    min-height: 100vh;
+    box-sizing: border-box;
 }
 
-.letter-box.show {
+
+.open-letter-btn {
+    width: 100px;
+    height: 100px;
+    background-color: rgb(192, 192, 192);
+    border: 2px solid black;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    opacity: 1;
+    transition: opacity 0.6s ease;
+    padding: 0;
+}
+
+.open-letter-btn:hover {
+    background-color: #f0f0f0;
+    transform: rotate(10deg);
+}
+
+.screw-icon {
+    width: 40px;
+    height: 40px;
+    fill: black;
+}
+
+#overlay {
+    position: fixed;
+    /* covers whole screen */
+    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    /* optional semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    transition: opacity 0.6s ease;
+    z-index: 10;
+    /* on top */
+    overflow: auto;
+}
+
+#overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+}
+
+#NoteDIV.show {
     opacity: 1;
     transform: scale(1);
     pointer-events: auto;
 }
 
-.letter-page {
-    width: 48%;
-    text-align: left;
-    background-color: #fffaf0;
+.open-letter-btn {
+    transition: opacity 0.6s ease;
+    opacity: 1;
+}
+
+.open-letter-btn.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Letter box styles */
+.letter-box {
+    display: flex;
+    flex-direction: row;
+    /* 🔁 changed from column to row */
+    gap: 2rem;
+
+    background: #fffdf5;
+    border: 2px solid #c9a67b;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    pointer-events: none;
+    visibility: hidden;
+
+    max-width: 90vw;
+    max-height: 80vh;
+    width: 900px;
+
+    justify-content: center;
+    align-items: stretch;
     padding: 1rem;
+
+    font-family: 'Georgia', serif;
+    line-height: 1.6;
+    margin: 2rem auto 0;
+    overflow: hidden;
+    /* optional: avoids scrollbars on container */
+}
+
+
+.letter-box.show {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+    visibility: visible;
+}
+
+.letter-page {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    background-color: #fffaf0;
     border: 1px solid #dec2a5;
     border-radius: 4px;
     box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
+    max-height: calc(80vh - 2rem);
+    /* account for padding */
+    font-family: 'Georgia', serif;
+    line-height: 1.6;
 }
 
-.open-letter-btn {
-    display: block;
-    margin: 3rem auto;
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-    background-color: #d4a373;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background 0.3s ease;
+.letter-box.hidden {
+    display: none;
+    /* just in case it's not shown by default */
 }
 
-.open-letter-btn:hover {
-    background-color: #b17a5b;
+@media (max-width: 600px) {
+    .letter-box {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .letter-page {
+        width: 100%;
+    }
+
+    .container h2 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .letter-box {
+        flex-direction: column;
+    }
+
+    .letter-page {
+        text-align: left !important;
+    }
 }
