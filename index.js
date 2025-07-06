@@ -24,14 +24,14 @@ document.addEventListener("DOMContentLoaded", () => {
     resizeCanvas();
     drawStaticGrain();
 
-    // Optional: redraw when resized
+    // Redraw grain effect on window resize
     window.addEventListener("resize", () => {
         resizeCanvas();
         drawStaticGrain();
     });
 });
 
-// Page toggle
+// Toggle between letter pages (if implemented)
 function toggleSelection() {
     const page1 = document.querySelector('.page-1');
     const page2 = document.querySelector('.page-2');
@@ -47,11 +47,38 @@ function toggleSelection() {
     }
 }
 function openLetter() {
+    const overlay = document.getElementById('overlay');
     const letter = document.getElementById('NoteDIV');
     const button = document.querySelector('.open-letter-btn');
 
-    // Show the letter, hide the button
-    letter.classList.add('show');
-    button.style.display = 'none';
+    button.classList.add('fade-out');
+
+    setTimeout(() => {
+        button.style.display = 'none';
+        overlay.classList.add('show');
+        letter.classList.add('show');
+    }, 600);
 }
 
+function closeLetter() {
+    const overlay = document.getElementById('overlay');
+    const letter = document.getElementById('NoteDIV');
+    const button = document.querySelector('.open-letter-btn');
+
+    letter.classList.remove('show');
+    overlay.classList.remove('show');
+
+    letter.addEventListener('transitionend', function handleFadeOut(e) {
+        if (e.propertyName === 'opacity') {
+            button.style.display = 'block';
+            button.classList.remove('fade-out');
+            letter.removeEventListener('transitionend', handleFadeOut);
+        }
+    });
+}
+
+document.getElementById('overlay').addEventListener('click', (event) => {
+    if (event.target === event.currentTarget) {
+        closeLetter();
+    }
+});
